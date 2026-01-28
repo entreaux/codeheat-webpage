@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+
+  <title>CodeHeat</title>
+
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+
+<body>
+  <!-- Static background (never scrolls) -->
+  <div class="bg" aria-hidden="true">
+    <!-- Gradient/Glow -->
+    <div class="bg__grad"></div>
+
+    <!-- Ribbon lines (static SVG overlay) -->
+    <svg class="bg__ribbons" viewBox="0 0 1600 900" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="rgba(255,70,205,0.45)"/>
+          <stop offset="0.5" stop-color="rgba(160,80,255,0.25)"/>
+          <stop offset="1" stop-color="rgba(60,255,220,0.20)"/>
+        </linearGradient>
+        <linearGradient id="g2" x1="0" y1="1" x2="1" y2="0">
+          <stop offset="0" stop-color="rgba(90,255,240,0.25)"/>
+          <stop offset="1" stop-color="rgba(255,95,210,0.22)"/>
+        </linearGradient>
+        <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="2.4" result="blur"/>
+          <feMerge>
+            <feMergeNode in="blur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+
+      <!-- left-side curves -->
+      <path d="M-50,120 C180,60 280,160 420,260 C580,380 760,360 920,300 C1130,220 1250,230 1700,80"
+            fill="none" stroke="url(#g1)" stroke-width="2.2" opacity="0.85" filter="url(#softGlow)"/>
+      <path d="M-80,220 C140,140 300,260 470,360 C640,470 780,470 990,430 C1170,395 1320,350 1700,240"
+            fill="none" stroke="url(#g2)" stroke-width="1.8" opacity="0.70" filter="url(#softGlow)"/>
+      <path d="M-60,360 C170,300 310,400 500,520 C680,630 820,640 1030,610 C1210,585 1370,520 1700,420"
+            fill="none" stroke="url(#g1)" stroke-width="1.6" opacity="0.55" filter="url(#softGlow)"/>
+      <path d="M-40,520 C180,470 330,560 540,680 C720,780 860,800 1060,790 C1280,780 1450,700 1700,640"
+            fill="none" stroke="url(#g2)" stroke-width="1.4" opacity="0.40" filter="url(#softGlow)"/>
+    </svg>
+
+    <!-- Subtle vignette -->
+    <div class="bg__vignette"></div>
+  </div>
+
+  <!-- Top bar (static) -->
+  <header class="topbar" role="banner">
+    <div class="topbar__left">
+      <img class="brand__icon" src="assets/img/icon.png" alt="" />
+      <span class="brand__name">CODEHEAT</span>
+    </div>
+
+    <!-- This link scrolls the RIGHT PANEL to #license -->
+    <a class="topbar__link" href="#license" data-scrollto="#license">LICENSE</a>
+  </header>
+
+  <!-- Main shell: left is static, right is the scroll container -->
+  <main class="shell" role="main">
+    <!-- LEFT: static hero panel -->
+    <section class="left" aria-label="Hero">
+      <div class="left__content">
+        <h1 class="hero__title">
+          SEE WHERE<br/>
+          YOUR CODE<br/>
+          HURTS IN<br/>
+          REAL-TIME
+        </h1>
+
+        <p class="hero__sub">
+          YOU ALREADY KNOW YOUR<br/>
+          CODEBASE IS LYING TO<br/>
+          YOU
+        </p>
+
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="#" data-action="download">
+            Download for Mac
+          </a>
+        </div>
+      </div>
+
+      <!-- Optional: left overlay glass/shape (kept subtle) -->
+      <div class="left__overlay" aria-hidden="true"></div>
+    </section>
+
+    <!-- RIGHT: glassmorphic scrollable panel -->
+    <aside class="right" aria-label="Details">
+      <div class="glass" id="rightScroll">
+        <div class="glass__inner">
+          <section class="heroRight">
+            <div class="shotCard">
+              <img class="shotCard__img" src="assets/img/app-screenshot.png" alt="CodeHeat heatmap screenshot" />
+            </div>
+
+            <p class="heroRight__copy">
+              A simple heatmap that
+              shows where engineering
+              and computational cost,
+              risk or cognitive load lie
+              in your codebase -<br/>
+              before anything breaks
+            </p>
+          </section>
+
+          <!-- Add enough content to justify scrolling -->
+          <section class="section">
+            <h2 class="section__title">What you get</h2>
+            <ul class="bullets">
+              <li>Real-time file + line-level hotspots (engineering cost signals).</li>
+              <li>Instant “where to look first” heatmap.</li>
+              <li>Local analysis: your code stays on your machine.</li>
+            </ul>
+          </section>
+
+          <section class="section">
+            <h2 class="section__title">Designed for speed</h2>
+            <p class="section__text">
+              CodeHeat is not a profiler. It’s a structural heatmap that surfaces likely maintenance cost and failure risk
+              by highlighting complexity concentration - before it manifests as bugs, slowdowns, or blocked refactors.
+            </p>
+          </section>
+
+          <!-- LICENSE section target -->
+          <section class="section" id="license">
+            <h2 class="section__title">License</h2>
+            <p class="section__text">
+              Licenses are validated locally. The app runs offline after activation.
+            </p>
+
+            <div class="licenseGrid">
+              <div class="licenseCard">
+                <div class="licenseCard__head">
+                  <span class="pill">PRO</span>
+                  <span class="licensePrice">€99</span>
+                </div>
+                <p class="licenseCard__text">
+                  For individual use. Enables large codebases analysis, quick audits, and evidence export.
+                </p>
+                <a class="btn btn--ghost" href="#" data-action="buy-pro">Get Pro</a>
+              </div>
+
+              <div class="licenseCard">
+                <div class="licenseCard__head">
+                  <span class="pill pill--alt">COMMERCIAL</span>
+                  <span class="licensePrice">€199</span>
+                </div>
+                <p class="licenseCard__text">
+                  For companies and client work. Same functionality. Permitted for commercial evidence.
+                </p>
+                <a class="btn btn--ghost" href="#" data-action="buy-commercial">Get Commercial</a>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <h2 class="section__title">Privacy</h2>
+            <p class="section__text">
+              Analysis runs locally. No code is uploaded. No telemetry is required for core functionality.
+            </p>
+          </section>
+
+          <footer class="footer">
+            <span class="footer__muted">© CodeHeat</span>
+            <a class="footer__link" href="#" data-action="support">Support</a>
+          </footer>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+:root {
+  /* Layout */
+  --topbar-h: 64px;
+  --page-pad: 28px;
+  --right-w: clamp(520px, 46vw, 860px);
+
+  /* Typography */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", "Helvetica Neue", Arial, sans-serif;
+
+  /* Color */
+  --text: rgba(255,255,255,0.92);
+  --muted: rgba(255,255,255,0.68);
+  --muted2: rgba(255,255,255,0.52);
+
+  /* Glass */
+  --glass-bg: rgba(255,255,255,0.07);
+  --glass-border: rgba(255,255,255,0.14);
+  --glass-shadow: 0 14px 60px rgba(0,0,0,0.35);
+
+  /* Buttons */
+  --btn-bg: rgba(255,255,255,0.94);
+  --btn-text: rgba(20, 16, 30, 0.92);
+  --btn-shadow: 0 10px 30px rgba(0,0,0,0.28);
+
+  /* Radius */
+  --r-lg: 22px;
+  --r-md: 16px;
+
+  /* Spacing */
+  --s-1: 6px;
+  --s-2: 10px;
+  --s-3: 14px;
+  --s-4: 18px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 42px;
+
+  /* Motion */
+  --ease: cubic-bezier(.2,.9,.2,1);
+}

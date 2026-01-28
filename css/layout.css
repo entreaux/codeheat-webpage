@@ -1,0 +1,190 @@
+body {
+  font-family: var(--font-sans);
+  color: var(--text);
+
+  /* Critical: BODY NEVER SCROLLS */
+  overflow: hidden;
+  background: #0b0614;
+}
+
+/* Background layer: fixed, never scrolls */
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bg__grad {
+  position: absolute;
+  inset: 0;
+
+  /* Parametric background approximation (fast + editable) */
+  background:
+    radial-gradient(900px 700px at 55% 55%, rgba(255, 120, 220, 0.18), transparent 55%),
+    radial-gradient(900px 700px at 62% 62%, rgba(100, 190, 255, 0.10), transparent 60%),
+    radial-gradient(1200px 900px at 20% 30%, rgba(160, 70, 255, 0.22), transparent 55%),
+    linear-gradient(135deg, rgba(25, 8, 50, 1) 0%, rgba(14, 7, 32, 1) 45%, rgba(10, 6, 20, 1) 100%);
+}
+
+/* If you later want pixel-perfect background:
+.bg__grad { background: url("../assets/img/bg.jpg") center/cover no-repeat; }
+*/
+
+.bg__ribbons {
+  position: absolute;
+  inset: -2%;
+  opacity: 0.9;
+}
+
+.bg__vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(1200px 900px at 50% 45%, transparent 25%, rgba(0,0,0,0.42) 82%),
+    linear-gradient(to bottom, rgba(0,0,0,0.20), rgba(0,0,0,0.35));
+}
+
+/* Topbar */
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: var(--topbar-h);
+  padding: 0 var(--page-pad);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  z-index: 10;
+}
+
+.topbar__left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand__icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  opacity: 0.95;
+}
+
+.brand__name {
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  font-size: 14px;
+  opacity: 0.92;
+}
+
+.topbar__link {
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  font-size: 13px;
+  opacity: 0.86;
+  transition: opacity 180ms var(--ease);
+}
+
+.topbar__link:hover { opacity: 1; }
+
+/* Main shell: grid keeps left static and right scrollable */
+.shell {
+  position: relative;
+  z-index: 1;
+
+  height: 100dvh;
+  padding-top: var(--topbar-h);
+
+  display: grid;
+  grid-template-columns: 1fr var(--right-w);
+}
+
+/* LEFT: never scrolls */
+.left {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(34px, 4vw, 60px);
+  display: flex;
+  align-items: flex-start;
+}
+
+.left__content {
+  margin-top: clamp(30px, 6vh, 110px);
+  max-width: 560px;
+}
+
+.left__overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  /* Subtle “panel” shaping; keep it faint */
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.00) 55%),
+    radial-gradient(1000px 800px at 40% 30%, rgba(255,90,210,0.06), transparent 60%);
+  opacity: 0.85;
+}
+
+/* RIGHT: ONLY SCROLL CONTAINER */
+.right {
+  position: relative;
+  padding: clamp(18px, 2.3vw, 30px);
+  display: flex;
+  align-items: stretch;
+
+  /* prevents accidental body scroll feel on trackpads */
+  overscroll-behavior: contain;
+}
+
+.glass {
+  width: 100%;
+  height: calc(100dvh - var(--topbar-h) - (clamp(18px, 2.3vw, 30px) * 2));
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  /* scrollbar stability */
+  scrollbar-gutter: stable;
+
+  border-radius: var(--r-lg);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+
+  /* Glass effect */
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .glass {
+    background: rgba(30, 18, 55, 0.72);
+  }
+}
+
+.glass__inner {
+  padding: clamp(22px, 2.6vw, 36px);
+}
+
+/* Responsive: collapse to single column on narrow widths */
+@media (max-width: 860px) {
+  body { overflow: auto; }          /* mobile: allow normal scrolling */
+  .shell {
+    height: auto;
+    min-height: 100dvh;
+    grid-template-columns: 1fr;
+  }
+  .right { padding-top: 12px; }
+  .glass {
+    height: auto;
+    overflow: visible;
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+  }
+}
+
