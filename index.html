@@ -85,9 +85,40 @@
         </p>
 
         <div class="hero__cta">
-          <a class="btn btn--primary" href="#" data-action="download">
-            Download for Mac
-          </a>
+          <div class="dl">
+            <div class="dl__label">Download for free</div>
+
+            <div class="dl__row" role="group" aria-label="Downloads">
+              <!-- Windows (active) -->
+              <a class="iconBtn" href="#" data-action="download" aria-label="Download for Windows" title="Windows">
+                <!-- Windows icon (simple) -->
+                <svg class="iconBtn__icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M2.5 4.2 11 3v8H2.5V4.2Zm0 15.6V13H11v8l-8.5-1.2ZM13 2.8 21.5 1.6V11H13V2.8Zm0 18.4V13h8.5v9.4L13 21.2Z" fill="currentColor"/>
+                </svg>
+                <span class="iconBtn__text">Windows</span>
+              </a>
+
+              <!-- macOS (blocked) -->
+              <span class="iconBtn iconBtn--disabled dl__mac" role="button" aria-disabled="true" aria-label="macOS (Available soon)" tabindex="0">
+                <!-- Apple icon (simple) -->
+                <svg class="iconBtn__icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M16.7 12.6c0-1.9 1.6-2.8 1.7-2.9-0.9-1.3-2.3-1.5-2.8-1.5-1.2-.1-2.3.7-2.9.7-.6 0-1.5-.7-2.5-.7-1.3 0-2.5.8-3.1 2-1.3 2.2-.3 5.5.9 7.3.6.9 1.3 1.9 2.3 1.9.9 0 1.3-.6 2.4-.6 1.1 0 1.4.6 2.5.6 1 0 1.7-1 2.3-1.9.7-1 1-1.9 1-1.9-.1 0-1.8-.7-1.8-3Zm-1.9-5.8c.5-.7.8-1.6.7-2.6-.8 0-1.8.6-2.3 1.2-.5.6-.9 1.6-.8 2.5.9.1 1.9-.5 2.4-1.1Z" fill="currentColor"/>
+                </svg>
+                <span class="iconBtn__text">macOS</span>
+
+                <!-- Hover glass panel -->
+                <span class="dl__tip" role="status" aria-live="polite">Available soon</span>
+              </span>
+            </div>
+
+            <div class="dl__note" role="note">
+              <strong>Windows security notice:</strong><br/>
+              On first launch, Windows may display a protection warning. This is expected for independent software not distributed through the Microsoft Store.<br/>
+              The application does <em>not</em> modify system files or run background services.<br/>
+              To proceed, select <span class="dl__quote">More info → Run anyway</span>.
+            </div>
+
+          </div>
         </div>
       </div>
 

@@ -2,10 +2,12 @@
    const rightScroll = document.getElementById("rightScroll");
 
    function isWKWebViewBridgeAvailable() {
-     return !!(window.webkit &&
-               window.webkit.messageHandlers &&
-               window.webkit.messageHandlers.bridge &&
-               typeof window.webkit.messageHandlers.bridge.postMessage === "function");
+     return !!(
+       window.webkit &&
+       window.webkit.messageHandlers &&
+       window.webkit.messageHandlers.bridge &&
+       typeof window.webkit.messageHandlers.bridge.postMessage === "function"
+     );
    }
 
    function postToNative(action, payload = {}) {
@@ -15,7 +17,7 @@
    }
 
    function openExternal(url) {
-     // If embedded, ask native to open.
+     // In-app (WKWebView): ask native to open.
      if (postToNative("openExternal", { url })) return;
      window.location.href = url;
    }
@@ -34,6 +36,7 @@
      const a = e.target.closest("a");
      if (!a) return;
 
+     // Scroll-to handling (e.g. LICENSE link in top bar)
      const scrollTo = a.getAttribute("data-scrollto");
      if (scrollTo) {
        e.preventDefault();
@@ -48,7 +51,8 @@
 
      switch (action) {
        case "download":
-         // Replace with your real download or checkout URL.
+         // Keep your existing download wiring.
+         // Replace with your real Windows download URL when ready.
          openExternal("https://example.com/download");
          break;
 
@@ -74,13 +78,9 @@
    window.addEventListener("load", () => {
      if (window.location.hash) {
        const sel = window.location.hash;
-       // Only handle if it exists
        if (document.querySelector(sel)) {
-         // Prevent browser from trying to scroll body
          setTimeout(() => scrollRightPanelTo(sel), 30);
        }
      }
    });
  })();
-
-

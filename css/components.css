@@ -55,6 +55,128 @@
 
 .btn--ghost:hover { background: rgba(255,255,255,0.13); }
 
+/* -----------------------------
+   NEW: download block (left hero)
+------------------------------ */
+
+.dl {
+  display: grid;
+  gap: 12px;
+  max-width: 420px;
+}
+
+.dl__label {
+  font-size: 13px;
+  font-weight: 650;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.86);
+}
+
+.dl__row {
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.iconBtn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 12px 14px;
+  border-radius: 999px;
+
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.14);
+  color: rgba(255,255,255,0.92);
+
+  box-shadow: 0 10px 26px rgba(0,0,0,0.20);
+
+  transition: transform 140ms var(--ease), filter 140ms var(--ease), opacity 140ms var(--ease), background 140ms var(--ease);
+  user-select: none;
+  cursor: pointer;
+}
+
+.iconBtn:hover { background: rgba(255,255,255,0.12); }
+.iconBtn:active { transform: translateY(1px) scale(0.99); }
+
+.iconBtn__icon {
+  width: 18px;
+  height: 18px;
+  opacity: 0.95;
+}
+
+.iconBtn__text {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.iconBtn--disabled {
+  opacity: 0.58;
+  cursor: default;
+}
+
+.iconBtn--disabled:hover { background: rgba(255,255,255,0.10); }
+.iconBtn--disabled:active { transform: none; }
+
+/* Hover glass tip for macOS */
+.dl__mac {
+  position: relative;
+}
+
+.dl__tip {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 10px);
+  transform: translateX(-50%);
+  white-space: nowrap;
+
+  padding: 9px 12px;
+  border-radius: 14px;
+
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.88);
+
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+
+  box-shadow: 0 18px 50px rgba(0,0,0,0.35);
+
+  font-size: 12px;
+  letter-spacing: 0.04em;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 140ms var(--ease), transform 140ms var(--ease);
+}
+
+.dl__mac:hover .dl__tip,
+.dl__mac:focus-within .dl__tip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Small instruction note */
+.dl__note {
+  color: rgba(255,255,255,0.60);
+  font-size: 12px;
+  line-height: 1.35;
+  max-width: 420px;
+}
+
+.dl__quote {
+  color: rgba(255,255,255,0.78);
+  font-weight: 650;
+}
+
+/* -----------------------------
+   Existing right-panel styles
+------------------------------ */
+
 .heroRight {
   display: grid;
   grid-template-columns: 1fr;
@@ -98,8 +220,6 @@
   /* Optical balance */
   text-wrap: balance;
 }
-
-
 
 .section {
   margin-top: 30px;
@@ -194,7 +314,6 @@
   white-space: nowrap;
 }
 
-
 .footer {
   margin-top: 26px;
   padding-top: 16px;
@@ -223,4 +342,3 @@
 @media (max-width: 860px) {
   .licenseGrid { grid-template-columns: 1fr; }
 }
-
